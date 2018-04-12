@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\CapitalList.cpp">
+    <ClCompile Include="CapitalList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\CapListNode.cpp">
+    <ClCompile Include="CapListNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Main.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\CapitalList.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CapitalList.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\CapListNode.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CapListNode.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

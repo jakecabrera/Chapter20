@@ -18,6 +18,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CapitalList.cpp" />
+    <ClCompile Include="CapListNode.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CapitalList.h" />
+    <ClInclude Include="CapListNode.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{7182FF9B-D3A2-465F-9B36-FC325C611335}</ProjectGuid>
@@ -110,15 +119,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\CapitalList.cpp" />
-    <ClCompile Include="..\..\..\..\CapListNode.cpp" />
-    <ClCompile Include="..\..\..\..\Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\CapitalList.h" />
-    <ClInclude Include="..\..\..\..\CapListNode.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
