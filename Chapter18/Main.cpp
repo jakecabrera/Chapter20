@@ -21,6 +21,7 @@ void remove(CapitalList&);
 void search(CapitalList&);
 void reverse(CapitalList&);
 void display(CapitalList&);
+void waitToContinue();
 
 int main() {
 	CapitalList list;
@@ -117,31 +118,36 @@ char getCapitalLetter() {
 int getIndex(CapitalList &list) {
 	// If the list is empty or of size 1, the only valid index
 	// to return would be 0
-	if (list.size() == 0 || list.size() == 1) {
+	if (list.size() == 0) {
+		cout << "The list is empty. Operation will be performed at index 0." << endl;
+		return 0;
+	}
+	else if (list.size() == 1) {
 		cout << "The only valid index to use here is 0, so we will use that." << endl;
 		return 0;
 	}
 
 	bool validInput = false;
 	int index;
+	string str;
 
 	// keep asking for input until given valid input
 	do {
 		// get input
 		cout << "Enter an index as an integer for the operation to be performed at: " << flush;
-		cin >> index;
+		getline(cin, str);
 
-		// Validate input
-		if (cin.good()) {
-			// We got a valid integer, now let's check
-			// if it's in our list's boundaries
+		try
+		{
+			// Get an integer from the input or die trying
+			index = stoi(str);
+
+			// Validate integer as a valid index
 			if (index >= 0 && index < list.size()) validInput = true;
 			else cout << "ERROR! Input is out of the list bounds. Enter an integer between 0 and " << list.size() << "..." << endl << endl;
 		}
-		// Input wasn't able to fit into var index
-		else {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		catch (...) // Input was not able to be put into an integer
+		{
 			cout << "ERROR! Input must be an integer. Please try again..." << endl << endl;
 		}
 	} while (!validInput);
@@ -216,6 +222,7 @@ int getMenuChoice() {
 // returns:		nothing
 // calls:		getCapitalLetter
 //				CapitalList::append
+//				waitToContinue
 // The append function asks for input from the user, validates
 // input, and appends valid input to the end of the given list.
 // *********************************************************
@@ -227,7 +234,8 @@ void append(CapitalList &list) {
 	// Append valid input to the list
 	list.append(c);
 
-	cout << "Letter '" << c << "' was added to the end of the list." << endl << endl;
+	cout << "Letter '" << c << "' was added to the end of the list." << endl;
+	waitToContinue();
 }
 
 // *********************************************************
@@ -238,6 +246,7 @@ void append(CapitalList &list) {
 // calls:		getIndex
 //				getCapitalLetter
 //				CapitalList::insert
+//				waitToContinue
 // The insert function takes a given list and inserts a
 // specified capital letter at a specified index within the
 // list.
@@ -251,7 +260,8 @@ void insert(CapitalList &list) {
 
 	list.insert(index, c);
 
-	cout << "Letter '" << c << "' was inserted at index " << index << endl << endl;
+	cout << "Letter '" << c << "' was inserted at index " << index << endl;
+	waitToContinue();
 }
 
 // *********************************************************
@@ -260,6 +270,7 @@ void insert(CapitalList &list) {
 // passed:		CapitalList
 // returns:		nothing
 // calls:		getIndex
+//				waitToContinue
 //				CapitalList::get
 //				CapitalList::size
 //				CapitalList::remove
@@ -278,9 +289,11 @@ void remove(CapitalList &list) {
 
 	int index = getIndex(list);
 
-	cout << "Letter '" << list.get(index) << "' at index " << index << " will be removed from the list." << endl << endl;
+	cout << "Letter '" << list.get(index) << "' at index " << index << " will be removed from the list." << endl;
 
 	list.remove(index);
+
+	waitToContinue();
 }
 
 // *********************************************************
@@ -288,7 +301,8 @@ void remove(CapitalList &list) {
 // called by:	main
 // passed:		CapitalList
 // returns:		nothing
-// calls:		getCapitalLetter
+// calls:		waitToContinue
+//				getCapitalLetter
 //				CapitalList::search
 // The search function will take a given list and tell the
 // user the index of the first character found that matches
@@ -306,8 +320,10 @@ void search(CapitalList &list) {
 		cout << "The letter '" << c << "' was not found in the list..." << endl << endl;
 	}
 	else {
-		cout << "The letter '" << c << "' was found at index " << index << endl << endl;
+		cout << "The letter '" << c << "' was found at index " << index << endl;
 	}
+
+	waitToContinue();
 }
 
 // *********************************************************
@@ -315,7 +331,8 @@ void search(CapitalList &list) {
 // called by:	main
 // passed:		CapitalList
 // returns:		nothing
-// calls:		CapitalList::reverse
+// calls:		waitToContinue
+//				CapitalList::reverse
 // The reverse function will take a given list and reverse
 // the order of its elements.
 // *********************************************************
@@ -325,7 +342,9 @@ void reverse(CapitalList &list) {
 	
 	list.reverse();
 
-	cout << "The list has successfully been reversed." << endl << endl;
+	cout << "The list has successfully been reversed." << endl;
+
+	waitToContinue();
 }
 
 // *********************************************************
@@ -333,7 +352,8 @@ void reverse(CapitalList &list) {
 // called by:	main
 // passed:		nothing
 // returns:		nothing
-// calls:		CapitalList::print
+// calls:		waitToContinue
+//				CapitalList::print
 // The display function displays the contents of the given
 // list.
 // *********************************************************
@@ -341,5 +361,25 @@ void reverse(CapitalList &list) {
 void display(CapitalList &list) {
 	cout << "Below is the contents of the list:" << endl << endl;
 	list.print();
+
+	waitToContinue();
+}
+
+// *********************************************************
+// name:		waitToContinue
+// called by:	append
+//				insert
+//				search
+// passed:		nothing
+// returns:		nothing
+// calls:		nothing
+// The waitToContinue function will pause the program until
+// the user presses enter.
+// *********************************************************
+
+void waitToContinue() {
+	string tmp;
+	cout << "Press [ENTER] to continue...";
+	getline(cin, tmp);
 	cout << endl;
 }
