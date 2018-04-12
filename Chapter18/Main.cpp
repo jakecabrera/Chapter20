@@ -15,12 +15,12 @@ char getCapitalLetter();
 int getIndex(CapitalList&);
 void displayMenu();
 int getMenuChoice();
-void append(CapitalList&);
-void insert(CapitalList&);
-void remove(CapitalList&);
-void search(CapitalList&);
-void reverse(CapitalList&);
-void display(CapitalList&);
+void appendToList(CapitalList&);
+void insertToList(CapitalList&);
+void removeFromList(CapitalList&);
+void searchInList(CapitalList&);
+void reverseList(CapitalList&);
+void displayList(CapitalList&);
 void waitToContinue();
 
 int main() {
@@ -33,22 +33,22 @@ int main() {
 		switch (getMenuChoice())
 		{
 		case 1:
-			append(list);
+			appendToList(list);
 			break;
 		case 2:
-			insert(list);
+			insertToList(list);
 			break;
 		case 3:
-			remove(list);
+			removeFromList(list);
 			break;
 		case 4:
-			search(list);
+			searchInList(list);
 			break;
 		case 5:
-			reverse(list);
+			reverseList(list);
 			break;
 		case 6:
-			display(list);
+			displayList(list);
 			break;
 		case 7:
 			finished = true;
@@ -227,7 +227,7 @@ int getMenuChoice() {
 // input, and appends valid input to the end of the given list.
 // *********************************************************
 
-void append(CapitalList &list) {
+void appendToList(CapitalList &list) {
 	cout << "You have chosen to append a capital letter to the end of the list." << endl;
 	char c = getCapitalLetter();
 
@@ -252,7 +252,7 @@ void append(CapitalList &list) {
 // list.
 // *********************************************************
 
-void insert(CapitalList &list) {
+void insertToList(CapitalList &list) {
 	cout << "You have chosen to insert a capital letter into the list." << endl;
 	
 	int index = getIndex(list);
@@ -278,7 +278,7 @@ void insert(CapitalList &list) {
 // list at a specified index.
 // *********************************************************
 
-void remove(CapitalList &list) {
+void removeFromList(CapitalList &list) {
 	cout << "You have chosen to remove a capital letter from the list." << endl;
 
 	// If the list is empty, then there's nothing to be done
@@ -309,7 +309,7 @@ void remove(CapitalList &list) {
 // the specified character to search for.
 // *********************************************************
 
-void search(CapitalList &list) {
+void searchInList(CapitalList &list) {
 	cout << "You have chosen to search the list for a capital letter." << endl;
 
 	char c = getCapitalLetter();
@@ -337,7 +337,7 @@ void search(CapitalList &list) {
 // the order of its elements.
 // *********************************************************
 
-void reverse(CapitalList &list) {
+void reverseList(CapitalList &list) {
 	cout << "You have chosen to reverse the order of elements in the list." << endl;
 	
 	list.reverse();
@@ -358,7 +358,7 @@ void reverse(CapitalList &list) {
 // list.
 // *********************************************************
 
-void display(CapitalList &list) {
+void displayList(CapitalList &list) {
 	cout << "Below is the contents of the list:" << endl << endl;
 	list.print();
 
