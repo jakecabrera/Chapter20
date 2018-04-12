@@ -129,18 +129,18 @@ int getIndex(CapitalList &list) {
 
 	bool validInput = false;
 	int index;
-	string str;
+	string input;
 
 	// keep asking for input until given valid input
 	do {
 		// get input
 		cout << "Enter an index as an integer for the operation to be performed at: " << flush;
-		getline(cin, str);
+		getline(cin, input);
 
 		try
 		{
 			// Get an integer from the input or die trying
-			index = stoi(str);
+			index = stoi(input);
 
 			// Validate integer as a valid index
 			if (index >= 0 && index < list.size()) validInput = true;
@@ -284,15 +284,15 @@ void remove(CapitalList &list) {
 	// If the list is empty, then there's nothing to be done
 	if (list.size() == 0) {
 		cout << "However, the list is empty and there is nothing to remove..." << endl << endl;
-		return;
 	}
+	else {
+		int index = getIndex(list);
 
-	int index = getIndex(list);
+		cout << "Letter '" << list.get(index) << "' at index " << index << " will be removed from the list." << endl;
 
-	cout << "Letter '" << list.get(index) << "' at index " << index << " will be removed from the list." << endl;
-
-	list.remove(index);
-
+		list.remove(index);
+	}
+	
 	waitToContinue();
 }
 
@@ -327,7 +327,7 @@ void search(CapitalList &list) {
 }
 
 // *********************************************************
-// name:		search
+// name:		reverse
 // called by:	main
 // passed:		CapitalList
 // returns:		nothing
@@ -370,6 +370,9 @@ void display(CapitalList &list) {
 // called by:	append
 //				insert
 //				search
+//				remove
+//				reverse
+//				display
 // passed:		nothing
 // returns:		nothing
 // calls:		nothing
