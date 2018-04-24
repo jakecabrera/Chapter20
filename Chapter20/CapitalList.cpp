@@ -297,3 +297,26 @@ char CapitalList::get(int index) const
 	// return the letter at the index given
 	return nodePtr->letter;
 }
+
+// ==========================================
+//				Chapter 20 work
+// ==========================================
+
+// *********************************************************
+// name:		countNodes
+// called by:	nobody
+// passed:		CapListNode* as where to start counting
+// returns:		int as count of elements in the list
+// calls:		nobody
+// The countNodes function counts all of the nondes after
+// and including the given node.
+// *********************************************************
+
+int CapitalList::countNodes(CapListNode *nodePtr) const {
+	if (nodePtr != nullptr) {
+		return 1 + countNodes(nodePtr->next);
+	}
+	else {
+		return 0;
+	}
+}

@@ -9,6 +9,10 @@ private:
 	int numElements = 0; 
 	
 	CapListNode *head;
+
+	// Recursive functions for chapter 20 operations
+	int countNodes(CapListNode*) const;
+	char comparNodes(CapListNode*) const;
 public:
 	// Constructor
 	CapitalList();
@@ -25,4 +29,8 @@ public:
 	void print() const;
 	int size() const;
 	char get(int) const;
+
+	// New operations for chapter 20
+	int numNodes() const;
+	int maxNode() const;
 };
