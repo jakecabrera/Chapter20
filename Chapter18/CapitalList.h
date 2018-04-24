@@ -26,4 +26,3 @@ public:
 	int size() const;
 	char get(int) const;
 };
-
