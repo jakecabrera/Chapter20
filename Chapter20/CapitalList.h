@@ -32,5 +32,5 @@ public:
 
 	// New operations for chapter 20
 	int numNodes() const;
-	int maxNode() const;
+	char maxNode() const;
 };
