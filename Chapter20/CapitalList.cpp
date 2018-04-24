@@ -304,11 +304,11 @@ char CapitalList::get(int index) const
 
 // *********************************************************
 // name:		countNodes
-// called by:	nobody
+// called by:	numNodes
 // passed:		CapListNode* as where to start counting
-// returns:		int as count of elements in the list
+// returns:		int as count of elements from this node onward
 // calls:		nobody
-// The countNodes function counts all of the nondes after
+// The countNodes function counts all of the nodes after
 // and including the given node.
 // *********************************************************
 
@@ -318,5 +318,43 @@ int CapitalList::countNodes(CapListNode *nodePtr) const {
 	}
 	else {
 		return 0;
+	}
+}
+
+// *********************************************************
+// name:		numNodes
+// called by:	nobody
+// passed:		nothing
+// returns:		int as count of elements in the list
+// calls:		countNodes
+// The numNodes function counts all of the nodes in the
+// entire list through the recursive countNodes function.
+// *********************************************************
+
+int CapitalList::numNodes() const {
+	return countNodes(head);
+}
+
+// *********************************************************
+// name:		compareNodes
+// called by:	nobody
+// passed:		CapListNode* as where to start comparing
+// returns:		char as largest character
+// calls:		nobody
+// The compareNodes function will compare the given node
+// with therest of the nodes after it and return the largest
+// valued node.
+// *********************************************************
+
+char CapitalList::compareNodes(CapListNode *nodePtr) const {
+	if (!nodePtr) {
+		return NULL;
+	}
+	else if (nodePtr->next) {
+		char largestUpTillNow = compareNodes(nodePtr->next);
+		return (nodePtr->letter > largestUpTillNow) ? nodePtr->letter : largestUpTillNow;
+	}
+	else {
+		return nodePtr->letter;
 	}
 }

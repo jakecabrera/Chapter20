@@ -12,7 +12,7 @@ private:
 
 	// Recursive functions for chapter 20 operations
 	int countNodes(CapListNode*) const;
-	char comparNodes(CapListNode*) const;
+	char compareNodes(CapListNode*) const;
 public:
 	// Constructor
 	CapitalList();
