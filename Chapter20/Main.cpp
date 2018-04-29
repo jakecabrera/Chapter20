@@ -210,13 +210,13 @@ int getMenuChoice() {
 		// Validate input
 		if (cin.good()) {
 			if (choice > 0 && choice <= 9) validInput = true;
-			else cout << "ERROR! Input must be an integer 1-7. Please try again..." << endl << endl;
+			else cout << "ERROR! Input must be an integer 1-9. Please try again..." << endl << endl;
 		}
 		// Input wasn't able to fit into var choice
 		else {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "ERROR! Input must be an integer 1-7. Please try again..." << endl << endl;
+			cout << "ERROR! Input must be an integer 1-9. Please try again..." << endl << endl;
 		}
 	} while (!validInput);
 
