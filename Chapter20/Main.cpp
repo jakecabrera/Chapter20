@@ -1,8 +1,8 @@
 
 /**************************************
  *	Author: Jake Cabrera
- *	Date: 4/6/2018
- *	Programming Assignment Chapter 18
+ *	Date: 4/24/2018
+ *	Programming Assignment Chapter 20
  **************************************/
 
 #include <string>
@@ -21,6 +21,8 @@ void insertToList(CapitalList&);
 void removeFromList(CapitalList&);
 void searchInList(CapitalList&);
 void reverseList(CapitalList&);
+void getNodeCount(CapitalList&);
+void getLargestNode(CapitalList&);
 void displayList(CapitalList&);
 void waitToContinue();
 
@@ -49,9 +51,15 @@ int main() {
 			reverseList(list);
 			break;
 		case 6:
-			displayList(list);
+			getNodeCount(list);
 			break;
 		case 7:
+			getLargestNode(list);
+			break;
+		case 8:
+			displayList(list);
+			break;
+		case 9:
 			finished = true;
 			break;
 		}
@@ -173,8 +181,10 @@ void displayMenu() {
 	cout << "3. Remove element" << endl;
 	cout << "4. Search for element" << endl;
 	cout << "5. Reverse list" << endl;
-	cout << "6. Display list" << endl;
-	cout << "7. Exit" << endl << endl;
+	cout << "6. Count number of nodes" << endl;
+	cout << "7. Display largest node" << endl;
+	cout << "8. Display list" << endl;
+	cout << "9. Exit" << endl << endl;
 }
 
 // *********************************************************
@@ -199,14 +209,14 @@ int getMenuChoice() {
 
 		// Validate input
 		if (cin.good()) {
-			if (choice > 0 && choice <= 7) validInput = true;
-			else cout << "ERROR! Input must be an integer 1-7. Please try again..." << endl << endl;
+			if (choice > 0 && choice <= 9) validInput = true;
+			else cout << "ERROR! Input must be an integer 1-9. Please try again..." << endl << endl;
 		}
 		// Input wasn't able to fit into var choice
 		else {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "ERROR! Input must be an integer 1-7. Please try again..." << endl << endl;
+			cout << "ERROR! Input must be an integer 1-9. Please try again..." << endl << endl;
 		}
 	} while (!validInput);
 
@@ -351,7 +361,7 @@ void reverseList(CapitalList &list) {
 // *********************************************************
 // name:		display
 // called by:	main
-// passed:		nothing
+// passed:		CapitalList
 // returns:		nothing
 // calls:		waitToContinue
 //				CapitalList::print
@@ -368,12 +378,9 @@ void displayList(CapitalList &list) {
 
 // *********************************************************
 // name:		waitToContinue
-// called by:	append
-//				insert
-//				search
-//				remove
-//				reverse
-//				display
+// called by:	append, insert, search, remove,
+//				reverse, display, getLargestNode,
+//				getNodeCount
 // passed:		nothing
 // returns:		nothing
 // calls:		nothing
@@ -386,4 +393,43 @@ void waitToContinue() {
 	cout << "Press [ENTER] to continue...";
 	getline(cin, tmp);
 	cout << endl;
+}
+
+// ==========================================
+//				Chapter 20 work
+// ==========================================
+
+// *********************************************************
+// name:		getNodeCount
+// called by:	main
+// passed:		CapitalList
+// returns:		nothing
+// calls:		CapitalList::numNodes
+//				waitToContinue
+// The getNodeCount function takes a list and prints the 
+// amount of nodes in the list
+// *********************************************************
+
+void getNodeCount(CapitalList &list) {
+	cout << "There are [" << list.numNodes() << "] nodes in the list." << endl;
+	waitToContinue();
+}
+
+// *********************************************************
+// name:		getLargestNode
+// called by:	main
+// passed:		CapitalList
+// returns:		nothing
+// calls:		CapitalList::maxNode
+//				waitToContinue
+// The getNodeCount function takes a list and prints the 
+// value of the largest node
+// *********************************************************
+
+void getLargestNode(CapitalList &list) {
+	char largestChar = list.maxNode();
+	if (largestChar) cout << "The largest value in the list is [" << largestChar << "]." << endl;
+	else cout << "The list is empty so there is no largest node..." << endl;
+
+	waitToContinue();
 }

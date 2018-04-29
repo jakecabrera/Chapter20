@@ -304,19 +304,76 @@ char CapitalList::get(int index) const
 
 // *********************************************************
 // name:		countNodes
-// called by:	nobody
+// called by:	numNodes
 // passed:		CapListNode* as where to start counting
-// returns:		int as count of elements in the list
+// returns:		int as count of elements from this node onward
 // calls:		nobody
-// The countNodes function counts all of the nondes after
+// The countNodes function counts all of the nodes after
 // and including the given node.
 // *********************************************************
 
 int CapitalList::countNodes(CapListNode *nodePtr) const {
 	if (nodePtr != nullptr) {
+		// Return 1 + the count of the rest of the nodes in the list
 		return 1 + countNodes(nodePtr->next);
 	}
 	else {
+		// nodePtr is not pointing to a node so return 0
 		return 0;
 	}
+}
+
+// *********************************************************
+// name:		numNodes
+// called by:	nobody
+// passed:		nothing
+// returns:		int as count of elements in the list
+// calls:		countNodes
+// The numNodes function counts all of the nodes in the
+// entire list through the recursive countNodes function.
+// *********************************************************
+
+int CapitalList::numNodes() const {
+	return countNodes(head);
+}
+
+// *********************************************************
+// name:		compareNodes
+// called by:	nobody
+// passed:		CapListNode* as where to start comparing
+// returns:		char as largest character
+// calls:		nobody
+// The compareNodes function will compare the given node
+// with the rest of the nodes after it and return the largest
+// valued node.
+// *********************************************************
+
+char CapitalList::compareNodes(CapListNode *nodePtr) const {
+	if (!nodePtr) {
+		// There is no node to begin with here
+		return NULL;
+	}
+	else if (nodePtr->next) {
+		// get the largest node from the rest of the list
+		char largestSoFar = compareNodes(nodePtr->next);
+		// return the larger of this node or the largest of the rest of the list
+		return (nodePtr->letter > largestSoFar) ? nodePtr->letter : largestSoFar;
+	}
+	else {
+		// this node points to the nullptr, so return its value
+		return nodePtr->letter;
+	}
+}
+
+// *********************************************************
+// name:		maxNode
+// called by:	nobody
+// passed:		nothing
+// returns:		char as largest character
+// calls:		nobody
+// The maxNode function gets the largest node in the list.
+// *********************************************************
+
+char CapitalList::maxNode() const {
+	return compareNodes(head);
 }
